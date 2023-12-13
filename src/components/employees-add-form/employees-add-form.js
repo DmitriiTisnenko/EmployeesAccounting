@@ -16,6 +16,13 @@ class EmployeesAddForm extends Component {
         })
     }    
 
+    addEmployee = (e) => {
+        e.preventDefault();
+        if(this.state.name.replace(/\s/g, '').length > 2 && this.state.salary) {
+            const {onAdd} = this.props; 
+            onAdd(this.state.name, this.state.salary);
+        }   
+    } 
 
     render () {
         const {name, salary} = this.state;
@@ -38,6 +45,7 @@ class EmployeesAddForm extends Component {
                         className="form-contol new-post-label" 
                         placeholder="З/п в $?"/>   
                     <button type="submit" 
+                            onClick={this.addEmployee}
                             className="btn btn-outline-light"
                             >Добавить</button>
                 </form>
